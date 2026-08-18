@@ -1,0 +1,5 @@
+
+/** outer /* nested */ documentation */
+fn greet(name: string): string {
+  return $"hello {{Ruda}} {name}";
+}

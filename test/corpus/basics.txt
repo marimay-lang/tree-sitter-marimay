@@ -1,0 +1,199 @@
+==================
+Declarations
+==================
+
+public type Pair<T> {
+  public left: T;
+  public right: T;
+}
+
+fn swap<T>(value: Pair<T>): Pair<T> {
+  return Pair { left: value.right, right: value.left };
+}
+
+---
+
+(source_file
+  (attributed_declaration
+    (record_declaration
+      (type_identifier)
+      (type_parameters
+        (type_parameter
+          (type_identifier)))
+      (record_body
+        (field_declaration
+          (identifier)
+          (nominal_type
+            (qualified_type_identifier
+              (type_identifier))))
+        (field_declaration
+          (identifier)
+          (nominal_type
+            (qualified_type_identifier
+              (type_identifier)))))))
+  (attributed_declaration
+    (function_declaration
+      (identifier)
+      (type_parameters
+        (type_parameter
+          (type_identifier)))
+      (parameters
+        (parameter
+          (identifier)
+          (nominal_type
+            (qualified_type_identifier
+              (type_identifier))
+            (type_arguments
+              (nominal_type
+                (qualified_type_identifier
+                  (type_identifier)))))))
+      (nominal_type
+        (qualified_type_identifier
+          (type_identifier))
+        (type_arguments
+          (nominal_type
+            (qualified_type_identifier
+              (type_identifier)))))
+      (block
+        (return_statement
+          (primary_expression
+            (record_expression
+              (qualified_type_identifier
+                (type_identifier))
+              (record_fields
+                (field_value
+                  (identifier)
+                  (member_expression
+                    (primary_expression
+                      (identifier))
+                    (identifier)))
+                (field_value
+                  (identifier)
+                  (member_expression
+                    (primary_expression
+                      (identifier))
+                    (identifier)))))))))))
+
+==================
+Expressions and patterns
+==================
+
+fn choose(value: Result<int, Error>): int {
+  const loaded = service.load<Result<int, Error>>(1)?;
+  return match value {
+    case Ok(inner) if inner > 0 => inner;
+    case Err(_) | Pending => 0;
+  };
+}
+
+---
+
+(source_file
+  (attributed_declaration
+    (function_declaration
+      (identifier)
+      (parameters
+        (parameter
+          (identifier)
+          (nominal_type
+            (qualified_type_identifier
+              (type_identifier))
+            (type_arguments
+              (nominal_type
+                (qualified_type_identifier
+                  (type_identifier)))
+              (nominal_type
+                (qualified_type_identifier
+                  (type_identifier)))))))
+      (nominal_type
+        (qualified_type_identifier
+          (type_identifier)))
+      (block
+        (const_declaration
+          (binding_name
+            (identifier))
+          (try_expression
+            (generic_call_expression
+              (member_expression
+                (primary_expression
+                  (identifier))
+                (identifier))
+              (type_arguments
+                (nominal_type
+                  (qualified_type_identifier
+                    (type_identifier))
+                  (type_arguments
+                    (nominal_type
+                      (qualified_type_identifier
+                        (type_identifier)))
+                    (nominal_type
+                      (qualified_type_identifier
+                        (type_identifier))))))
+              (arguments
+                (argument_list
+                  (primary_expression
+                    (integer_literal)))))))
+        (return_statement
+          (primary_expression
+            (match_expression
+              (primary_expression
+                (identifier))
+              (match_arm
+                (constructor_pattern
+                  (qualified_type_identifier
+                    (type_identifier))
+                  (positional_pattern
+                    (identifier_pattern
+                      (identifier))))
+                (binary_expression
+                  (primary_expression
+                    (identifier))
+                  (primary_expression
+                    (integer_literal)))
+                (primary_expression
+                  (identifier)))
+              (match_arm
+                (or_pattern
+                  (constructor_pattern
+                    (qualified_type_identifier
+                      (type_identifier))
+                    (positional_pattern
+                      (wildcard_pattern)))
+                  (identifier_pattern
+                    (identifier)))
+                (primary_expression
+                  (integer_literal))))))))))
+
+==================
+Strings and nested comments
+==================
+
+/** outer /* nested */ documentation */
+fn greet(name: string): string {
+  return $"hello {{Ruda}} {name}";
+}
+
+---
+
+(source_file
+  (block_comment)
+  (attributed_declaration
+    (function_declaration
+      (identifier)
+      (parameters
+        (parameter
+          (identifier)
+          (nominal_type
+            (qualified_type_identifier
+              (type_identifier)))))
+      (nominal_type
+        (qualified_type_identifier
+          (type_identifier)))
+      (block
+        (return_statement
+          (primary_expression
+            (interpolated_string
+              (interpolated_text)
+              (interpolation
+                (primary_expression
+                  (identifier))))))))))

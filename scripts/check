@@ -1,0 +1,31 @@
+#!/bin/sh
+set -eu
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$root"
+
+npx tree-sitter generate
+mkdir -p build
+npx tree-sitter build -o build/ruda.dylib .
+npx tree-sitter test --lib-path build/ruda.dylib --lang-name ruda
+npx tree-sitter query --quiet \
+  --lib-path build/ruda.dylib \
+  --lang-name ruda \
+  queries/highlights.scm \
+  test/fixtures/all-productions.ruda
+
+status=0
+for fixture in test/fixtures/*.ruda; do
+  output=$(npx tree-sitter parse --quiet \
+    --lib-path build/ruda.dylib \
+    --lang-name ruda \
+    "$fixture")
+  if [ -z "$output" ]; then
+    printf 'parse: ok: %s\n' "$fixture"
+  else
+    printf '%s\n' "$output" >&2
+    status=1
+  fi
+done
+
+exit "$status"

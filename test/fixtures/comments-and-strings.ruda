@@ -1,0 +1,8 @@
+/** Documentation with a /* nested comment */ inside. */
+fn strings(name: string): string {
+  const ordinary = "line\\nvalue";
+  const raw = r"C:\\tmp\\ruda";
+  const bytes = b"bytes\\x00";
+  const rune = 'λ';
+  return $"hello {{Ruda}} {name}!";
+}

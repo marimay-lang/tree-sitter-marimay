@@ -1,0 +1,27 @@
+{
+  "name": "tree-sitter-ruda",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for the Ruda programming language",
+  "license": "MIT",
+  "author": "Ruda contributors",
+  "main": "bindings/node",
+  "keywords": [
+    "incremental",
+    "parsing",
+    "ruda",
+    "tree-sitter"
+  ],
+  "files": [
+    "grammar.js",
+    "tree-sitter.json",
+    "queries/*",
+    "src/**"
+  ],
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "./scripts/check"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "0.26.12"
+  }
+}
