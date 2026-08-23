@@ -1,26 +1,26 @@
 {
   "grammars": [
     {
-      "name": "ruda",
-      "camelcase": "Ruda",
-      "scope": "source.ruda",
+      "name": "marimay",
+      "camelcase": "Marimay",
+      "scope": "source.marimay",
       "path": ".",
       "file-types": [
-        "ruda"
+        "my"
       ],
       "highlights": [
         "queries/highlights.scm"
       ],
-      "injection-regex": "^ruda$"
+      "injection-regex": "^marimay$"
     }
   ],
   "metadata": {
     "version": "0.1.0",
     "license": "MIT",
-    "description": "Tree-sitter grammar for the Ruda programming language",
+    "description": "Tree-sitter grammar for the Marimay programming language",
     "authors": [
       {
-        "name": "Ruda contributors"
+        "name": "Marimay contributors"
       }
     ],
     "links": {

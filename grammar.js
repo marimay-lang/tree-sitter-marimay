@@ -1,5 +1,5 @@
 /**
- * @file Tree-sitter grammar for the Ruda programming language
+ * @file Tree-sitter grammar for the Marimay programming language
  * @license MIT
  */
 
@@ -25,7 +25,7 @@ const PREC = {
 const IDENTIFIER = /[A-Za-z_\u0080-\uFFFF][A-Za-z0-9_\u0080-\uFFFF]*/;
 
 module.exports = grammar({
-  name: 'ruda',
+  name: 'marimay',
 
   word: $ => $.identifier,
 

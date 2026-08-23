@@ -1,14 +1,14 @@
 {
-  "name": "tree-sitter-ruda",
+  "name": "tree-sitter-marimay",
   "version": "0.1.0",
-  "description": "Tree-sitter grammar for the Ruda programming language",
+  "description": "Tree-sitter grammar for the Marimay programming language",
   "license": "MIT",
-  "author": "Ruda contributors",
+  "author": "Marimay contributors",
   "main": "bindings/node",
   "keywords": [
     "incremental",
     "parsing",
-    "ruda",
+    "marimay",
     "tree-sitter"
   ],
   "files": [

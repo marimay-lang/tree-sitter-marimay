@@ -6,19 +6,19 @@ cd "$root"
 
 npx tree-sitter generate
 mkdir -p build
-npx tree-sitter build -o build/ruda.dylib .
-npx tree-sitter test --lib-path build/ruda.dylib --lang-name ruda
+npx tree-sitter build -o build/marimay.dylib .
+npx tree-sitter test --lib-path build/marimay.dylib --lang-name marimay
 npx tree-sitter query --quiet \
-  --lib-path build/ruda.dylib \
-  --lang-name ruda \
+  --lib-path build/marimay.dylib \
+  --lang-name marimay \
   queries/highlights.scm \
-  test/fixtures/all-productions.ruda
+  test/fixtures/all-productions.my
 
 status=0
-for fixture in test/fixtures/*.ruda; do
+for fixture in test/fixtures/*.my; do
   output=$(npx tree-sitter parse --quiet \
-    --lib-path build/ruda.dylib \
-    --lang-name ruda \
+    --lib-path build/marimay.dylib \
+    --lang-name marimay \
     "$fixture")
   if [ -z "$output" ]; then
     printf 'parse: ok: %s\n' "$fixture"
