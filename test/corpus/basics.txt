@@ -3,8 +3,8 @@ Declarations
 ==================
 
 public type Pair<T> {
-  public left: T;
-  public right: T;
+  public left: T,
+  public right: T,
 }
 
 fn swap<T>(value: Pair<T>): Pair<T> {
@@ -81,8 +81,8 @@ Expressions and patterns
 fn choose(value: Result<int, Error>): int {
   const loaded = service.load<Result<int, Error>>(1)?;
   return match value {
-    case Ok(inner) if inner > 0 => inner;
-    case Err(_) | Pending => 0;
+    Ok(inner) if inner > 0 => inner,
+    Err(_) | Pending => 0,
   };
 }
 
@@ -158,7 +158,7 @@ fn choose(value: Result<int, Error>): int {
                     (qualified_type_identifier
                       (type_identifier))
                     (positional_pattern
-                      (wildcard_pattern)))
+                      (remainder_pattern)))
                   (identifier_pattern
                     (identifier)))
                 (primary_expression
