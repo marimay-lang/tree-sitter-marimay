@@ -1,0 +1,10 @@
+fn calculateΔ(café: int): int {
+  const case = café;
+  const of = case;
+  const yield = of;
+  return yield;
+}
+
+fn panic(test: int, fuzz: int): int {
+  return test + fuzz;
+}

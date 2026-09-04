@@ -1,0 +1,3 @@
+fn null(undefined: int): int {
+  return undefined;
+}

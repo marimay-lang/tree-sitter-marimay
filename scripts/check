@@ -28,4 +28,32 @@ for fixture in test/fixtures/*.my; do
   fi
 done
 
+for fixture in test/invalid/*.my; do
+  output=$(npx tree-sitter parse --quiet \
+    --lib-path build/marimay.dylib \
+    --lang-name marimay \
+    "$fixture" 2>/dev/null || true)
+  if [ -n "$output" ]; then
+    printf 'parse: rejected: %s\n' "$fixture"
+  else
+    printf 'expected parse error: %s\n' "$fixture" >&2
+    status=1
+  fi
+done
+
+if [ -n "${MMAY:-}" ]; then
+  if [ ! -x "$MMAY" ]; then
+    printf 'MMAY is not executable: %s\n' "$MMAY" >&2
+    status=1
+  else
+    for fixture in test/fixtures/*.my; do
+      if "$MMAY" fmt "$fixture" --check; then
+        printf 'mmay fmt: ok: %s\n' "$fixture"
+      else
+        status=1
+      fi
+    done
+  fi
+fi
+
 exit "$status"

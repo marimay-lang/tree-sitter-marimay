@@ -58,6 +58,7 @@
 (integer_literal) @number
 (float_literal) @number
 (boolean_literal) @boolean
+(reserved_sentinel) @keyword
 
 ; Keywords
 [

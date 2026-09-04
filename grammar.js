@@ -23,12 +23,48 @@ const PREC = {
   RECORD: 14,
 };
 
-const IDENTIFIER = /[A-Za-z_\u0080-\uFFFF][A-Za-z0-9_\u0080-\uFFFF]*/;
+const IDENTIFIER = /\p{XID_Start}\p{XID_Continue}*/u;
+
+const RESERVED_WORDS = [
+  'as',
+  'break',
+  'const',
+  'continue',
+  'defer',
+  'else',
+  'enum',
+  'extern',
+  'false',
+  'fn',
+  'for',
+  'from',
+  'if',
+  'import',
+  'in',
+  'interface',
+  'let',
+  'match',
+  'mutable',
+  'null',
+  'public',
+  'return',
+  'scope',
+  'spawn',
+  'true',
+  'type',
+  'undefined',
+  'unsafe',
+  'while',
+];
 
 module.exports = grammar({
   name: 'marimay',
 
   word: $ => $.identifier,
+
+  reserved: {
+    global: _ => RESERVED_WORDS,
+  },
 
   externals: $ => [
     $.block_comment,
@@ -445,6 +481,7 @@ module.exports = grammar({
       $.closure_expression,
       $.match_expression,
       $.interpolated_string,
+      $.reserved_sentinel,
     ),
 
     _literal: $ => choice(
@@ -598,6 +635,10 @@ module.exports = grammar({
     rune_content: _ => token.immediate(/[^'\\\r\n]/),
 
     boolean_literal: _ => choice('true', 'false'),
+
+    // Keep the two null-like sentinels out of identifier positions while
+    // retaining a stable recovery node for editor diagnostics.
+    reserved_sentinel: _ => choice('null', 'undefined'),
 
     line_comment: _ => token(seq('//', /[^\r\n]*/)),
 

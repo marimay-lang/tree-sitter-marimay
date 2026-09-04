@@ -16,7 +16,15 @@ npm test
 `npm test` regenerates the parser, runs Tree-sitter corpus tests, and rejects
 parse errors in the representative Marimay fixtures.
 
-The grammar currently targets the Marimay 0.1 surface, including declarations,
-generic types and calls, records, algebraic enums, interfaces, pattern
-matching, postfix `?`, closures, direct-style `scope`/`spawn`, interpolated
-strings, contextual keywords, and nested block comments.
+The grammar targets the Marimay 0.1 design surface shipped by the
+`0.1.0-alpha.1` toolchain, including declarations, generic types and calls,
+records, algebraic enums, interfaces, pattern matching, postfix `?`, closures,
+direct-style `scope`/`spawn`, interpolated strings, Unicode XID identifiers,
+hard keywords, and nested block comments.
+
+Set `MMAY` to an `0.1.0-alpha.1` compiler when running the suite to also check
+that every valid fixture is accepted by the canonical formatter:
+
+```sh
+MMAY=/absolute/path/to/mmay npm test
+```

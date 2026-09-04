@@ -1791,6 +1791,10 @@
           "named": true
         },
         {
+          "type": "reserved_sentinel",
+          "named": true
+        },
+        {
           "type": "rune_literal",
           "named": true
         },
@@ -1967,6 +1971,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "reserved_sentinel",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "return_statement",
@@ -2618,6 +2627,10 @@
     "named": false
   },
   {
+    "type": "null",
+    "named": false
+  },
+  {
     "type": "public",
     "named": false
   },
@@ -2656,6 +2669,10 @@
   {
     "type": "type_identifier",
     "named": true
+  },
+  {
+    "type": "undefined",
+    "named": false
   },
   {
     "type": "unsafe",
