@@ -24,7 +24,7 @@
       }
     ],
     "links": {
-      "repository": "http://gitea.example.invalid:3000/Marimay/tree-sitter-marimay"
+      "repository": "https://github.com/marimay-lang/tree-sitter-marimay"
     }
   },
   "bindings": {
